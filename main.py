@@ -4,8 +4,11 @@ from flask_login import LoginManager,login_required,login_user,logout_user,curre
 from sqlalchemy.orm import DeclarativeBase,Mapped,mapped_column
 from sqlalchemy import Integer,String,Float
 from flask_bcrypt import Bcrypt
+from flask_ckeditor import CKEditor
+from form import *
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
+ckeditor = CKEditor(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 class Base(DeclarativeBase):
     pass
@@ -45,7 +48,13 @@ def about():
 
 @app.route('/register')
 def signup():
-    return render_template('register.html')
+    form = RegisterForm()
+    name = form.password.data
+    password = form.password.data
+    email = form.email.data
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(password)
+    return render_template('register.html',form=form)
 
 @app.route('/login')
 def login():
