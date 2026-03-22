@@ -5,11 +5,14 @@ from sqlalchemy.orm import DeclarativeBase,Mapped,mapped_column
 from sqlalchemy import Integer,String,Float
 from flask_bcrypt import Bcrypt
 from flask_ckeditor import CKEditor
+from flask_bootstrap import Bootstrap5
 from form import *
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 ckeditor = CKEditor(app)
+bootstrap = Bootstrap5(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
+app.config['SECRET_KEY'] = "iwwjhweugfjujfhigeru83y28rhkm"
 class Base(DeclarativeBase):
     pass
 db = SQLAlchemy(model_class=Base)
@@ -58,7 +61,10 @@ def signup():
 
 @app.route('/login')
 def login():
-    return render_template('login')
-
+    form = LoginForm()
+    return render_template('login.html',form=form)
+@app.route('/user-page')
+def user_page():
+    return render_template('user-page.html')
 if __name__ == '__main__':
     app.run(debug=True)
