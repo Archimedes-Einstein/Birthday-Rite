@@ -196,3 +196,12 @@ nav {
     font-size: 1.8rem;
     font-weight: 500;
 }
+.card{
+    display: flex;
+    justify-content: center;
+    align-items-center
+    border-radius: 20px;
+    box-shadow: 2px 5px 10px #EEEEEE;
+    padding: 2rem;
+    margin: 2rem 0;
+}

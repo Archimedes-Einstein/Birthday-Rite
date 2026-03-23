@@ -3,9 +3,14 @@
 {% block content %}
     <div class="login-hero-section">
         <div class="hero-text">
-            <h1 class="login-hero-title"> Welcome to Birthrite</h1>
+            <h1 class="login-hero-title"> Welcome Back</h1>
             <p class="login-text">Let's make your birthday celebration come to life</p>
         </div>
     </div>
+    <div class="card">
+        {{ form.hidden_tag()}}
     {{render_form(form)}}
+    </div>
+
+
 {% endblock %}
