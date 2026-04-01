@@ -1,1 +1,6 @@
-alert(" Hello, I'm back guys.")
+// Quick snippet to load components
+function loadComponent(id, file) {
+    fetch(file).then(res => res.text()).then(data => {
+        document.getElementById(id).innerHTML = data;
+    });
+}
